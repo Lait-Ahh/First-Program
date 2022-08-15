@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <title>Pierre Papier Ciseau</title>
+    </head>
+    <body>
+        <button>Pierre</button>
+        <button>Papier</button>
+        <button>Ciseaux</button>
+        <div class="resultat"></div>
+
+        <script>
+            const buttons = document.querySelectorAll("button");
+
+            for (let i = 0; i < buttons.length; i++) {
+                buttons[i].addEventListener("click",function() {
+                    const joueur = buttons[i].innerHTML;
+                    const robot = buttons[Math.floor(Math.random() * buttons.length)].innerHTML;
+                    console.log(robot);
+                    let resultat = "";
+
+                    if (joueur === robot) {
+                        resultat = "Egalité";
+                    }
+                    else if ((joueur === "Pierre" && robot === "Ciseaux") || (joueur === "Feuille" && robot === "Pierre") || (joueur === "Ciseaux" && robot === "Feuille")) {
+                        resultat = "Gagné";
+                    }
+                    else {
+                        resultat = "Perdu";
+                    }
+
+                    document.querySelector(".resultat").innerHTML = `
+                    Joueur : ${joueur} </br>
+                    Robot : ${robot} </br>
+                    ${resultat}
+                    `;
+
+                });
+            }
+        </script>
+    </body>
+</html>
